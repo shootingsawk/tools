@@ -1,0 +1,84 @@
+# Usage (exemple en session nulle) : 
+# ----------------------------------
+# 1/ $ perl smbloot.pl -i scansSMB.gnmap -o partages.txt
+# 2/ $ perl smbloot2.pl -p partages.txt -o listeRepertoiresFichiers
+# 3/ $ grep -i '*.kdbx' listeRepertoiresFichiers/ALL_RESULTS.txt | ./smbloot3.pl -l LootageFichiers
+
+
+------------------------------------------------------------------------------------------------------------
+smbloot.pl
+----------
+
+# Arguments :
+# -----------
+# -u, --user <login:motdepasse> 
+#     Login et mot de passe de l'utilisateur sous la forme "DOMAIN\USERNAME:PASSWORD"
+#     ("DOMAIN\" est optionel). Si aucun utilisateur n'est donné, les sessions nulles SMB seront utilisées.
+#
+# -i, --input <nom d'une machine ou nom d'un fichier .gnmap> 
+#     Spcécifier le nom d'une machine à scanner ou un fichier contenant une liste de machines ou les 
+#     résultats .gnmap d'un scan nmap contenant des ports 445 ou 139 ouverts.
+
+# Options :
+# ---------
+# -o, --output <fichier> 
+#     Export des résultats dans un fichier.
+#
+# -f, --force 
+#     Force le script à continuer même si le login et le mot de passe fournis sont incorrects.
+#     (Dangereux ! Peut bloquer le compte. Vérifier préalablement le "lockout threshold").
+
+
+------------------------------------------------------------------------------------------------------------
+smbloot2.pl
+-----------
+
+# Arguments :
+# -----------
+# -u, --user <login:motdepasse ou nom d'un fichier>    
+#     Login(s) et mot(s) de passe à utiliser. Peut être spécifié sous forme de fichier.
+#     A fournir sous la forme "DOMAIN\USERNAME:PASSWORD" (avec "DOMAIN\" en optionnel)
+#
+# -p, --partages <nom d'un fichier ou nom du partage>
+#     Partages à lister récursivement.
+#     Les partages sont à fournir sous la forme "\\serveur\partage"
+#
+# -o, --output <repertoire>
+#     Les résultats seront mis dans ce répertoire.
+#     Ce répertoire sera créé et ne doit pas exister.
+
+# Options :
+# ---------
+# -m, --maxexec <nombre>
+#     Temps maxi en seconde par répertoire.
+#     Par défaut, 120 secondes.
+#
+# -f, --force
+#     Force le script à continuer même si le login et le mot de passe fournis sont incorrects.
+#     (Dangereux ! Peut bloquer le compte. Vérifier préalablement le "lockout threshold").
+#
+# -n, --nocreds
+#     Ne pas inclure le login et mot de passe dans le résultat de sortie.
+#     Dans ce cat, smbloot3.pl ne fonctionnera pas pour la partie lootage.
+
+
+------------------------------------------------------------------------------------------------------------
+
+smbloot3.pl
+-----------
+
+# Options :
+# ---------
+# -l, --loot <repertoire>
+#     Repertoire dans lequel sauvegarder les fichiers recuperes.
+#     Si ce repertoire n'existe pas, il sera creer.
+#
+# -a, --all
+#     Pour recuperer tous les fichiers listes.
+#     Sans cette option, le nombre de fichiers telecharges est limite a 20 fichiers maxi.
+#
+# -n, --noedit
+#     Pour garder le nom des fichiers sauvegardes sous leur forme originale.
+
+
+------------------------------------------------------------------------------------------------------------
