@@ -24,7 +24,8 @@ chomp (my $encoded = $ARGV[0]);
 
 my $key = pack("H16", "EF00FF02FB00FF42");
 my $cipher = new Crypt::DES $key;
-my $ciphered = substr($encoded, 0, 16);
+#my $ciphered = substr($encoded, 0, 16);
 
-my $plaintext = $cipher->decrypt(pack("H16", $ciphered));
+my $plaintext = $cipher->decrypt(pack("H16", $encoded));
 print ($plaintext, "\n");
+
