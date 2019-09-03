@@ -5,7 +5,7 @@
 # ------
 # Decrypt platformconfig.xml passwords for Cisco CUCM
 #
-# usage : $ perl cucm_decrypt_platformconfig.pl \\
+# usage : $ perl cucm_decrypt_DES.pl \\
 # 1AFC15B0B20EC1EE831812812AB2825C831812812AB2825C831812812AD2825D
 # C!sc0123
 #
